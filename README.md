@@ -1,9 +1,9 @@
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
-# 예제 - 음식배달
+# 음식배달 도메인 SRE 예제
 
 본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
-이는 클라우드 네이티브 애플리케이션의 개발에 요구되는 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
+마이크로서비스 모델링과 클라우드 네이티브 애플리케이션 개발내용을 포함하며, 배포된 마이크로서비스를 운영하는데 필요한 클라우드 플랫폼 기반 모니터링 요소를 중점적으로 다루고 있어 Cloud PaaS Platform 기반 SRE 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
 
 
