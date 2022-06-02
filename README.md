@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
-# 음식배달 도메인 SRE 예제
+# 음식배달 Site Reliability Engineering(SRE) 예제
 
 본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
 마이크로서비스 모델링과 클라우드 네이티브 애플리케이션 개발내용을 포함하며, 배포된 마이크로서비스를 운영하는데 필요한 클라우드 플랫폼 기반 모니터링 요소를 중점적으로 다루고 있어 Cloud PaaS Platform 기반 SRE 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
@@ -17,13 +17,16 @@
     - [DDD 의 적용](#ddd-의-적용)
     - [폴리글랏 퍼시스턴스](#폴리글랏-퍼시스턴스)
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
-    - [동기식 호출 과 Fallback 처리](#동기식-호출-과-Fallback-처리)
-    - [비동기식 호출 과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
+    - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
+    - [비동기식 호출과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
   - [운영](#운영)
     - [CI/CD 설정](#cicd설정)
     - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-서킷-브레이킹-장애격리)
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
+    - [Service Mesh]
+    - [통합 Monitoring]
+    - [통합 Logging]
   - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
 
 # 서비스 시나리오
