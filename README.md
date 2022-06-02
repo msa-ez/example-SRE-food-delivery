@@ -19,15 +19,15 @@
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
-    - [인증/인가]
+    - 통합인증 및 인가
   - [운영](#운영)
     - [CI/CD 설정](#cicd설정)
     - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-서킷-브레이킹-장애격리)
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
-    - [Service Mesh]
-    - [통합 Monitoring]
-    - [통합 Logging]
+    - Service Mesh
+    - 통합 Monitoring
+    - 통합 Logging
   - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
 
 # 서비스 시나리오
