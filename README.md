@@ -26,7 +26,7 @@
     - [무정지 재배포](#무정지-재배포)
     - [Service Mesh](#Service-Mesh)
     - [통합 Monitoring](#통합-Monitoring)
-    - 통합 Logging
+    - [통합 Logging](#통합-Logging)
   - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
 
 # 서비스 시나리오
@@ -796,7 +796,7 @@ Concurrency:		       96.02
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
 ## Service Mesh 
-* Service Mesh, Istio를 클러스터에 설치
+* Service Mesh(Istio)를 클러스터에 설치하여 Food Delivery 마이크로서비스간 Service Mesh를 오케스트레이션 한다.
 ```
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.3 TARGET_ARCH=x86_64 sh -
 export PATH=$PWD/bin:$PATH
@@ -814,20 +814,20 @@ istioctl install --set profile=demo -y
 kubectl label namespace default istio-injection=enabled
 ```
 
-* Istio Sidecar Injection이 설정된 네임스페이스에 서비스를 배포해 Service Mesh를 적용한다.
+* Istio Sidecar Injection이 설정된 네임스페이스에 음식배달 서비스를 재배포하여 Service Mesh를 적용한다.
 ```
 kubectl get all
 ```
 
 ## 통합 Monitoring
-* Istio Addon서버 중, Prometheus/ Grafana를 활용한 Service Mesh 및 마이크로서비스 통합 모니터링이 가능한 환경을 구축한다. 
-* Istio 버전이 '1.11.3'일 경우,
+* Istio Addon서버 중, Prometheus/ Grafana를 활용한 쿠버네티스 클러스터 및 음식배달 마이크로서비스 통합 모니터링이 가능한 환경을 구축한다. 
+* Istio 버전 '1.11.3'이 설치된 경우,
 ```
 cd istio-1.11.3
 kubectl apply -f samples/addons
 kubectl get svc -n istio-system
 ```
-* Grafana를 외부접근 가능하게 설정 후 Endpoint에 접속하여 확인
+* Grafana Service(On istio-system namespace)를 외부접근 가능하게 설정 후 Endpoint에 접속하여 Dashboard를 설정하고 확인
 
 ![image](https://user-images.githubusercontent.com/35618409/171767588-2db72ec3-8515-4fa5-989c-9b04ad667a87.png)
 
@@ -843,6 +843,35 @@ kubectl get svc -n istio-system
   * uid 에 7636번 입력 후 Load 클릭
   * 하단 prometheus 에서 prometheus 선택
   * 선택 후 import 클릭
+
+## 통합 Logging
+* 음식배달 마이크로서비스들의 로그를 중앙에서 통합 조회하기 위해 EFK(Elasticsearch, Fluentd, Kibana) 스텍을 클러스터에 설치한다. 
+```
+helm repo add elastic https://helm.elastic.co
+helm repo update
+kubectl create namespace elastic
+helm install elasticsearch elastic/elasticsearch -n elastic
+helm install kibana elastic/kibana -n elastic
+```
+
+* 음식배달 마이크로서비스가 설치된 네임스페이스 정보(ex. shop)를 활용하여 Fluentd 데몬의 환경설정에 반영한다.
+
+* kibana Service(On elastic namespace)를 외부접근 가능하게 설정 후 Endpoint에 접속하여 Logging filter를 설정하고 확인
+
+- Kibana 접속 후, Management > Stack Management를 선택한다.
+![image](https://user-images.githubusercontent.com/35618409/160071078-bd7caa6f-3532-45ba-bb13-a05198aac002.png)
+
+- Kibana > Index Patterns 화면의 Search 필드에 'fluent-shop*'을 입력하고 Time field 에 @timestamp 를 선택하여 수집된 데이터를 인덱싱한다.
+![image](https://user-images.githubusercontent.com/35618409/160071303-0b7b9e35-9f2a-490f-9368-fe5e2312c4b8.png)
+
+- Analytics > Discover 를 눌러 조회페이지를 오픈한다.
+![image](https://user-images.githubusercontent.com/35618409/160072101-a5fb8e02-913a-4cbb-bbc5-1ba2fd6a97c7.png)
+
+- 'Add filter' 에서 'kubernetes.namespace.name is shop'으로 조건을 지정한다.
+![image](https://user-images.githubusercontent.com/35618409/160072511-b79a1933-ff0d-4476-a1d3-4cf5bf081a24.png)
+
+- 조회할 Date Range에 인덱싱된 shop 네임스페이스 data가 존재하면  아래처럼 로그가 나타난다.
+![image](https://user-images.githubusercontent.com/35618409/160073584-24ab9fb6-b341-46e1-b7f3-0f5b8dce2761.png)
 
 
 # 신규 개발 조직의 추가
