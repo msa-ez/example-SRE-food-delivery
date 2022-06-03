@@ -832,17 +832,17 @@ kubectl get svc -n istio-system
 ![image](https://user-images.githubusercontent.com/35618409/171767588-2db72ec3-8515-4fa5-989c-9b04ad667a87.png)
 
 * 쿠버네티스 클러스터 모니터링 설정
-> (Left Import 메뉴에서)
-> uid 에 315번 입력 후 Load 클릭
-> 하단 prometheus 에서 prometheus 선택
-> 선택 후 import 클릭
+-- (Left Import 메뉴에서)
+-- uid 에 315번 입력 후 Load 클릭
+-- 하단 prometheus 에서 prometheus 선택
+-- 선택 후 import 클릭
 
 
 * 마이크로서비스 모니터링 설정
-> (Left Import 메뉴에서)
-> uid 에 7636번 입력 후 Load 클릭
-> 하단 prometheus 에서 prometheus 선택
-> 선택 후 import 클릭
+-- (Left Import 메뉴에서)
+-- uid 에 7636번 입력 후 Load 클릭
+-- 하단 prometheus 에서 prometheus 선택
+-- 선택 후 import 클릭
 
 
 # 신규 개발 조직의 추가
