@@ -18,7 +18,7 @@
     - [폴리글랏 퍼시스턴스](#폴리글랏-퍼시스턴스)
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
-    - [비동기식 호출과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
+    - [비동기식 호출과 Eventual Consistency](#비동기식-호출과-Eventual-Consistency)
   - [운영](#운영)
     - [DevOps 툴체인](#DevOps-툴체인)
     - [동기식 호출/서킷 브레이킹/장애격리](#동기식-호출/서킷-브레이킹/장애격리)
@@ -424,8 +424,7 @@ http localhost:8081/orders item=피자 storeId=2   #Success
 
 
 
-
-## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+## 비동기식 호출과 Eventual Consistency
 
 
 결제가 이루어진 후에 상점시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 상점 시스템의 처리를 위하여 결제주문이 블로킹 되지 않아도록 처리한다.
