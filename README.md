@@ -24,7 +24,7 @@
     - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-서킷-브레이킹-장애격리)
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
-    - Service Mesh
+    - [Service Mesh](#Service-Mesh)
     - 통합 Monitoring
     - 통합 Logging
   - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
@@ -795,7 +795,7 @@ Concurrency:		       96.02
 
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
-# Service Mesh 
+## Service Mesh 
 ```
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.3 TARGET_ARCH=x86_64 sh -
 export PATH=$PWD/bin:$PATH
