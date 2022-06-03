@@ -796,6 +796,7 @@ Concurrency:		       96.02
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
 ## Service Mesh 
+* Service Mesh, Istio를 클러스터에 설치
 ```
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.3 TARGET_ARCH=x86_64 sh -
 export PATH=$PWD/bin:$PATH
@@ -814,6 +815,34 @@ kubectl label namespace default istio-injection=enabled
 ```
 
 * Istio Sidecar Injection이 설정된 네임스페이스에 서비스를 배포해 Service Mesh를 적용한다.
+```
+kubectl get all
+```
+
+## 통합 Monitoring
+* Istio Addon서버 중, Prometheus/ Grafana를 활용한 Service Mesh 및 마이크로서비스 통합 모니터링이 가능한 환경을 구축한다. 
+* Istio 버전이 '1.11.3'일 경우,
+```
+cd istio-1.11.3
+kubectl apply -f samples/addons
+kubectl get svc -n istio-system
+```
+* Grafana를 외부접근 가능하게 설정 후 Endpoint에 접속하여 확인
+
+![image](https://user-images.githubusercontent.com/35618409/171767588-2db72ec3-8515-4fa5-989c-9b04ad667a87.png)
+
+* 쿠버네티스 클러스터 모니터링 설정
+> (Left Import 메뉴에서)
+> uid 에 315번 입력 후 Load 클릭
+> 하단 prometheus 에서 prometheus 선택
+> 선택 후 import 클릭
+
+
+* 마이크로서비스 모니터링 설정
+> (Left Import 메뉴에서)
+> uid 에 7636번 입력 후 Load 클릭
+> 하단 prometheus 에서 prometheus 선택
+> 선택 후 import 클릭
 
 
 # 신규 개발 조직의 추가
