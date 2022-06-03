@@ -25,8 +25,9 @@
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
     - [Service Mesh](#Service-Mesh)
-    - [통합 Monitoring](#통합-Monitoring)
-    - [통합 Logging](#통합-Logging)
+    - [마이크로서비스 통합 Monitoring](#통합-Monitoring)
+    - [마이크로서비스 통합 Logging](#통합-Logging)
+    - [이벤트 스트리밍 플랫폼 Monitoring](#이벤트-스트리밍-플랫폼-Install-및-Monitoring)
   - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
 
 # 서비스 시나리오
@@ -873,6 +874,40 @@ helm install kibana elastic/kibana -n elastic
 - 조회할 Date Range에 인덱싱된 shop 네임스페이스 data가 존재하면  아래처럼 로그가 나타난다.
 ![image](https://user-images.githubusercontent.com/35618409/160073584-24ab9fb6-b341-46e1-b7f3-0f5b8dce2761.png)
 
+
+## 이벤트 스트리밍 플랫폼 Install 및 Monitoring
+* 음식배달 마이크로서비스들간 런타임-디커플링을 위한 비동기통신에 사용될 Kafka 설치 및 모니터링을 위해 GUI기반 Kafka Dashboard를 설치한다.
+* Install Kafka
+  - kafka를 default 네임스페이스에 설치할 경우,
+```
+helm repo update
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-kafka bitnami/kafka
+```
+
+  - Install - kafka를 kafka 네임스페이스에 설치할 경우,
+```
+helm repo update
+helm repo add bitnami https://charts.bitnami.com/bitnami
+kubectl create ns kafka
+helm install my-kafka bitnami/kafka --namespace kafka
+``` 
+
+* Install Kafka Monitor
+```
+helm repo add kafka-ui https://provectus.github.io/kafka-ui
+helm repo update
+helm install kafka-ui kafka-ui/kafka-ui  --namespace=kafka \
+--set envs.config.KAFKA_CLUSTERS_0_NAME=shop-Kafka \
+--set envs.config.KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=my-kafka:9092 \
+--set envs.config.KAFKA_CLUSTERS_0_ZOOKEEPER=my-kafka-zookeeper:2181
+```
+
+* 설치 결과, kafka-ui 서비스와 Pod가 설치한 네임스페이스에서 조회된다.
+ ![image](https://user-images.githubusercontent.com/35618409/171811015-a18184b3-df38-4ced-be1e-82ee0105fc44.png)
+ 
+* kafka-ui Service를 외부접근 가능하게 설정 후 Endpoint에 접속하여 Kafka Dashboard를 확인
+![image](https://user-images.githubusercontent.com/35618409/171811367-7b25445b-4afc-4908-a811-4ad6f536ebf8.png)
 
 # 신규 개발 조직의 추가
 
