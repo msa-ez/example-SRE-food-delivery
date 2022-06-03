@@ -795,6 +795,26 @@ Concurrency:		       96.02
 
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
+# Service Mesh 
+```
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.3 TARGET_ARCH=x86_64 sh -
+export PATH=$PWD/bin:$PATH
+istioctl install --set profile=demo -y
+✔ Istio core installed
+✔ Istiod installed
+✔ Egress gateways installed
+✔ Ingress gateways installed
+✔ Installation complete
+...
+
+
+* Envoy 사이드카를 생성하는 Pod 들에 자동적으로 주입하게 하기 위해 다음의 설정을 추가한다
+```
+kubectl label namespace default istio-injection=enabled
+```
+
+* Istio Sidecar Injection이 설정된 네임스페이스에 서비스를 배포해 Service Mesh를 적용한다.
+
 
 # 신규 개발 조직의 추가
 
