@@ -20,8 +20,8 @@
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
   - [운영](#운영)
-    - [CI/CD 설정](#CI/CD-설정)
-    - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-/-서킷-브레이킹-/-장애격리)
+    - [DevOps 툴체인](#DevOps 툴체인)
+    - [동기식 호출/서킷 브레이킹/장애격리](#동기식-호출/서킷-브레이킹/장애격리)
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
     - [Service Mesh](#Service-Mesh)
@@ -513,15 +513,14 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 
 # 운영
 
-## CI/CD 설정
-
+## DevOps 툴체인
 
 음식배달 마이크로서비스 각 구현체들은 각자의 Source Repository 에 구성되었고, 사용한 CI/CD 플랫폼은 AWS Codebuild를 사용하였으며, Pipeline build script 는 각 프로젝트 Root 폴더 buildspec.yml 리소스에 포함되었다.
 
 * 각 마이크로서비스들은 배포된 Github의 master 브랜치에 리소스 커밋이 있는 경우, Trigger가 동작하여 AWS Codebuild를 실행하여 무정지 배포하여 준다.
 
 
-## 동기식 호출 / 서킷 브레이킹 / 장애격리
+## 동기식 호출/서킷 브레이킹/장애격리
 
 * 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
 
