@@ -21,7 +21,7 @@
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
   - [운영](#운영)
     - [CI/CD 설정](#cicd설정)
-    - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-서킷-브레이킹-장애격리)
+    - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-/-서킷-브레이킹-/-장애격리)
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
     - [Service Mesh](#Service-Mesh)
@@ -806,7 +806,7 @@ istioctl install --set profile=demo -y
 ✔ Ingress gateways installed
 ✔ Installation complete
 ...
-
+```
 
 * Envoy 사이드카를 생성하는 Pod 들에 자동적으로 주입하게 하기 위해 다음의 설정을 추가한다
 ```
