@@ -25,9 +25,9 @@
   - 오토 스케일아웃 (Auto Scale-out) 
   - 무정지 배포 (Zero downtime Deploy) 
   - Service Mesh (Istio) 
-  - 통합 모니터링
-  - 통합 로깅
-  - 통합 메시징 플랫폼 모니터링
+  - 마이크로서비스 통합 모니터링
+  - 마이크로서비스 통합 로깅
+  - 통합 메시징 플랫폼 구성/모니터링
 
 ## Table of contents
 
