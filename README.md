@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
-## Site Reliability Engineering(SRE) PreLab 예제 - 음식배달
+# Site Reliability Engineering(SRE) PreLab 예제 - 음식배달
 
 - **개요**
   - 본 예제는 SRE과정 이행을 위한 마이크로서비스 분석/설계, 구현, DevOps 툴체인(파이프라인)을 활용한 서비스 배포, 운영 및 모니터링에 이르는 전단계를 커버하도록 구성한 예제입니다. 
@@ -140,7 +140,7 @@
 
 
 
-## 분석/설계
+# 분석/설계
 
 
 ### AS-IS 조직 (Horizontally-Aligned)
@@ -238,7 +238,7 @@
     - 서브 도메인과 바운디드 컨텍스트의 분리:  각 팀의 KPI 별로 아래와 같이 관심 구현 스토리를 나눠가짐
 
 
-## 구현
+# 구현
 
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트와 파이선으로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
 
@@ -537,7 +537,7 @@ mvn spring-boot:run
 http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 확인
 ```
 
-## 배포
+# 배포
 
 ### 파이프라인 생성
 - 음식배달 도메인의 각 마이크로서비스의 자동 배포를 위한 DevOps Toolchain을 생성한다. 
@@ -549,7 +549,7 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 ![image](https://user-images.githubusercontent.com/35618409/174682937-ce037bce-1851-451d-add0-00ecb04a64dc.png)
 
 
-## 운영
+# 운영
 
 ### 동기식 호출, 서킷 브레이킹, 장애격리
 
