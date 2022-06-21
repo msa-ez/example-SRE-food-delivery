@@ -13,7 +13,7 @@
     - 분석/설계 모델에 대한 마이크로서비스 구현
     - MSA 아키텍처 구성 및 Cloud Platform 프로비저닝
     - 산출물 : 요구사항 정의서, 이벤트스토밍 모델, 헥사고날 아키텍처 정의서, MSA 구성도 
-  - 배포 및 운영 : (2,3,4일차) 
+  - 배포/운영/모니터링 : (2,3,4일차) 
     - DevOps Toolchain 구축
     - 마이크로서비스 오케스트레이션 (오토 스케일아웃, 무정지 배포, EFS 스토리지 구성)
     - 서비스 메쉬 구성 및 마이크로서비스에 SideCar Injection
@@ -40,7 +40,10 @@
   - 분산 메시징 플랫폼 모니터링
 
 - **PreLab 참고자료**
+  - ㅇㅇ
   - Mini Shopping mall 이벤트스토밍 모델 Url :
+  - ㅇㅇ
+  - ㅇㅇ
   - https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
   - Microservice Code 리파지토리 [Gateway] : https://github.com/acmexii/gateway
   - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/order
