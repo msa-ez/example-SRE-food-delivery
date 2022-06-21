@@ -73,7 +73,7 @@
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출과-Eventual-Consistency)
   - [Cloud Platform Provisioning](#Cloud-Platform-프로비저닝)
     - Control Tower 환경설정
-    - Kubernetes Runtime 구성
+    - 쿠버네티스 클러스터 구성
   - [배포:](#배포)
     - [파이프라인 생성](#파이프라인-생성)  
   - [운영](#운영)
@@ -543,7 +543,7 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 - 생성한 MSAEz 환경을 이용하여 컨트롤타워 역할의 클라이언트 환경을 구성한다.
   - 부여받은 AWS 테넌트 계정으로 로컬에 설치된 클라이언트의 Configuration 설정 (관련 Lab 참조)
 
-### Kubernetes Runtime 구성
+### 쿠버네티스 클러스터 구성
 - AWS 리전에 쿠버네티스 클러스터를 생성하고, 오케스트레이션에 필요한 서버들을 초기화 한다.  (관련 Lab 참조)
 - AWS 리전에 마이크로서비스별 컨테이너 레지스터리를 생성하고 DevOps Toolchain에서 이를 활용한다.
 
