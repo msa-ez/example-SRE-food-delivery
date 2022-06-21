@@ -71,7 +71,7 @@
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출과-Eventual-Consistency)
-  - [Cloud Platform Provisioning](#Cloud Platform-프로비저닝)
+  - [Cloud Platform Provisioning](#Cloud-Platform-프로비저닝)
     - Control Tower 환경설정
     - Kubernetes Runtime 구성
   - [배포:](#배포)
