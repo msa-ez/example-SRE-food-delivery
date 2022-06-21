@@ -31,8 +31,8 @@
   - Cloud Platform 프로비저닝 
   - DevOps Toolchain 구축 
   - 분산 메시징 플랫폼 구성 
-  - 오토 스케일아웃 (Auto Scale-out) 
-  - 무정지 배포 (Zero downtime Deploy) 
+  - SLA 운영 - 오토 스케일아웃(Auto Scale-out) 
+  - SLA 운영 - 무정지 배포(Zero downtime Deploy) 
   - Service Mesh 인프라 구축
   - Service Mesh 기반 마이크로서비스 Resilience 적용
   - 마이크로서비스 통합 모니터링
