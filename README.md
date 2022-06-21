@@ -58,7 +58,7 @@
     - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
 
     
-## Table of contents
+# Table of contents
 
 - [예제 - 음식배달](#---)
   - [서비스 시나리오](#서비스-시나리오)
@@ -82,7 +82,7 @@
     - [이벤트 스트리밍 플랫폼 Monitoring](#이벤트-스트리밍-플랫폼-Install-및-Monitoring)
   - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
 
-## 서비스 시나리오
+# 서비스 시나리오
 
 배달의 민족 커버하기 - https://1sung.tistory.com/106
 
@@ -107,7 +107,7 @@
     1. 배달상태가 바뀔때마다 카톡 등으로 알림을 줄 수 있어야 한다  Event driven
 
 
-## 체크포인트
+# 체크포인트
 
 - **분석 설계**
   - **이벤트스토밍** 
