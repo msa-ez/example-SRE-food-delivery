@@ -73,7 +73,7 @@
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출과-Eventual-Consistency)
-  - [Cloud Service Provisioning](#Cloud-Service-Provisioning)
+  - [Cloud Services Provisioning](#Cloud-Services-Provisioning)
     - Control Tower 환경설정
     - 쿠버네티스 클러스터 구성
   - [배포:](#배포)
@@ -539,7 +539,7 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 ```
 
 
-# Cloud Service Provisioning
+# Cloud Services Provisioning
 
 ### 적용 아키텍처 : AWS, EKS(Elastic Kubernetes Service v1.21), ECR(Elastic Container Registry)
 
