@@ -40,7 +40,7 @@
   - 분산 메시징 플랫폼 모니터링
 
 - **PreLab 참고자료**
-  - Shop mall 이벤트스토밍 모델 : https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
+  - Mini Shopping mall 이벤트스토밍 모델 : https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
   - Microservice Code 리파지토리 [Gateway] : https://github.com/acmexii/gateway
   - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/order
   - Microservice Code 리파지토리 [Delivery] : https://github.com/acmexii/delivery
@@ -70,6 +70,9 @@
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출과-Eventual-Consistency)
+  - [Cloud Platform Provisioning](#Cloud Platform-프로비저닝)
+    - Control Tower 환경설정
+    - Kubernetes Runtime 구성
   - [배포:](#배포)
     - [파이프라인 생성](#파이프라인-생성)  
   - [운영](#운영)
@@ -532,15 +535,24 @@ mvn spring-boot:run
 http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 확인
 ```
 
+
+# Cloud Platform 프로비저닝
+
+### Control Tower 환경설정
+- 생성한 MSAEz 환경을 이용하여 컨트롤타워 역할의 클라이언트 환경을 구성한다.
+  - 부여받은 AWS 테넌트 계정으로 로컬에 설치된 클라이언트의 Configuration 설정 (관련 Lab 참조)
+
+### Kubernetes Runtime 구성
+- AWS 리전에 쿠버네티스 클러스터를 생성하고, 오케스트레이션에 필요한 서버들을 초기화 한다.  (관련 Lab 참조)
+
+
 # 배포
 
 ### 파이프라인 생성
 - 음식배달 도메인의 각 마이크로서비스의 자동 배포를 위한 DevOps Toolchain을 생성한다. 
-- 
+- 또는, Mini Shopping Mall을 활용하여 각 서브 도메인의 자동 배포를 위한 DevOps Toolchain을 생성한다. 
 - DevOps Toolchain구성에 사용한 CI/CD 플랫폼은 AWS Codebuild로 Pipeline build script 는 각 프로젝트 Root 폴더 buildspec.yml 리소스에 포함되었다.
-
 * 각 마이크로서비스들은 배포된 Github의 master 브랜치에 리소스 커밋이 있는 경우, Trigger가 동작하여 AWS Codebuild를 실행하여 무정지 배포하여 준다.
-
 ![image](https://user-images.githubusercontent.com/35618409/174682937-ce037bce-1851-451d-add0-00ecb04a64dc.png)
 
 
