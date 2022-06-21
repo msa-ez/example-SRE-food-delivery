@@ -545,6 +545,7 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 
 ### Kubernetes Runtime 구성
 - AWS 리전에 쿠버네티스 클러스터를 생성하고, 오케스트레이션에 필요한 서버들을 초기화 한다.  (관련 Lab 참조)
+- AWS 리전에 마이크로서비스별 컨테이너 레지스터리를 생성하고 DevOps Toolchain에서 이를 활용한다.
 
 
 # 배포
@@ -553,7 +554,8 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 - 음식배달 도메인의 각 마이크로서비스의 자동 배포를 위한 DevOps Toolchain을 생성한다. 
 - 또는, Mini Shopping Mall을 활용하여 각 서브 도메인의 자동 배포를 위한 DevOps Toolchain을 생성한다. 
 - DevOps Toolchain구성에 사용한 CI/CD 플랫폼은 AWS Codebuild로 Pipeline build script 는 각 프로젝트 Root 폴더 buildspec.yml 리소스에 포함되었다.
-* 각 마이크로서비스들은 배포된 Github의 master 브랜치에 리소스 커밋이 있는 경우, Trigger가 동작하여 AWS Codebuild를 실행하여 무정지 배포하여 준다.
+* 각 마이크로서비스들은 배포된 Github의 master 브랜치에 리소스 커밋이 발생한 경우, Trigger가 동작하여 AWS Codebuild를 실행하여 무정지 배포하여 준다.
+* AWS기 제공하는 캐쉬기능을 활용하여 마이크로서비스 배포에 소요되는 Lead time을 줄인다.
 ![image](https://user-images.githubusercontent.com/35618409/174682937-ce037bce-1851-451d-add0-00ecb04a64dc.png)
 
 
