@@ -541,6 +541,8 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 
 # Cloud Platform 프로비저닝
 
+### 적용 아키텍처 : AWS, EKS(Elastic Kubernetes Service v1.21), ECR(Elastic Container Registry)
+
 ### Control Tower 환경설정
 - 생성한 MSAEz 환경을 이용하여 컨트롤타워 역할의 클라이언트 환경을 구성한다.
   - 부여받은 AWS 테넌트 계정으로 로컬에 설치된 클라이언트의 Configuration 설정 (관련 Lab 참조)
@@ -551,6 +553,8 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 
 
 # 배포
+
+### 적용 아키텍처 : AWS CodeBuild
 
 ### 파이프라인 생성
 - 음식배달 도메인의 각 마이크로서비스의 자동 배포를 위한 DevOps Toolchain을 생성한다. 
@@ -840,6 +844,9 @@ Concurrency:		       96.02
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
 ### Service Mesh 
+
+#### 적용 아키텍처 : Istio 1.11.3
+
 * Service Mesh(Istio)를 클러스터에 설치하여 Food Delivery 마이크로서비스간 Service Mesh를 오케스트레이션 한다.
 ```
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.3 TARGET_ARCH=x86_64 sh -
@@ -864,8 +871,11 @@ kubectl get all
 ```
 
 ### 통합 Monitoring
-* Istio Addon서버 중, Prometheus/ Grafana를 활용한 쿠버네티스 클러스터 및 음식배달 마이크로서비스 통합 모니터링이 가능한 환경을 구축한다. 
-* Istio 버전 '1.11.3'이 설치된 경우,
+
+#### 적용 아키텍처 : Prometheus, Grafana
+
+- Istio Addon서버 중 모니터링 스텍을 활용, 쿠버네티스 클러스터 및 음식배달 마이크로서비스 통합 모니터링이 가능한 환경을 구축한다. 
+- Istio 버전 '1.11.3'이 설치된 경우,
 ```
 cd istio-1.11.3
 kubectl apply -f samples/addons
@@ -889,6 +899,9 @@ kubectl get svc -n istio-system
   * 선택 후 import 클릭
 
 ### 통합 Logging
+
+#### 적용 아키텍처 : Elastic Search, Fluentd, Kibana
+
 * 음식배달 마이크로서비스들의 로그를 중앙에서 통합 조회하기 위해 EFK(Elasticsearch, Fluentd, Kibana) 스텍을 클러스터에 설치한다. 
 ```
 helm repo add elastic https://helm.elastic.co
@@ -919,6 +932,9 @@ helm install kibana elastic/kibana -n elastic
 
 
 ### 이벤트 스트리밍 플랫폼 Install 및 Monitoring
+
+#### 적용 아키텍처 : Kafka, Kafka UI
+
 * 음식배달 마이크로서비스들간 런타임-디커플링을 위한 비동기통신에 사용될 Kafka 설치 및 모니터링을 위해 GUI기반 Kafka Dashboard를 설치한다.
 * Install Kafka
   - kafka를 default 네임스페이스에 설치할 경우,
