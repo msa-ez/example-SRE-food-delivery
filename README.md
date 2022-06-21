@@ -29,6 +29,11 @@
   - 마이크로서비스 통합 로깅
   - 통합 메시징 플랫폼 구성/모니터링
 
+- **참고 자료**
+  - Developing Cloud Native Application : https://labs.msaez.io/#/courses/cna-full/cna-full-aws
+  - Pipeline & Service Mesh : https://labs.msaez.io/#/courses/AWS-CICD-Pipeline/a9df3aa0-cf38-11ec-a224-3fc5bb087654
+  - Container Orchestration : https://labs.msaez.io/#/courses/Container-Orchestration/container-orchestration-aws
+  
 ## Table of contents
 
 - [예제 - 음식배달](#---)
