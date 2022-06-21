@@ -3,9 +3,9 @@
 # Site Reliability Engineering(SRE) PreLab 예제 - 음식배달
 
 - **개요**
-  - 본 예제는 SRE과정 이행을 위한 마이크로서비스 분석/설계, 구현, DevOps 툴체인(파이프라인)을 활용한 서비스 배포, 운영 및 모니터링에 이르는 전단계를 커버하도록 구성한 예제입니다. 
-  - 분석/설계/구현 비중보다는 배포 및 사이트 운영(컨테이너 오케스트레이션, 모니터링, 로깅, etc)에 무게중심을 두어 예제 프로젝트는 기술하고 있습니다.
-  - 본 예제를 참조하거나 비숫한 수준의 도메인 모델을 정의하고 마이크로서비스 모델링, 클라우드 네이티브 애플리케이션 개발 및 배포, 배포된 마이크로서비스를 운영하는데 필요한 클라우드 플랫폼 기반 모니터링 요소를 중점적으로 구현해야 합니다.
+  - 본 예제는 GitOps기반 SRE과정 이행을 위한 클라우드 플랫폼 환경 구축과 마이크로서비스 전 라이프사이클(분석/설계, 구현, DevOps 툴체인(파이프라인)을 통한 배포, 운영/모니터링)을 커버하도록 구성된 예제입니다. 
+  - 분석/설계 및 구현단계 비중보다는 배포 및 사이트 운영(컨테이너 오케스트레이션, 모니터링, 로깅, etc)에 무게를 두고 예제 프로젝트는 전개됩니다.
+  - 본 예제를 참조하거나 비숫한 수준의 도메인 모델을 정의하고 마이크로서비스 모델링, 클라우드 네이티브 애플리케이션 개발 및 배포, 배포된 마이크로서비스를 운영하는데 필요한 클라우드 플랫폼 기반 모니터링 요소를 중점적으로 설명합니다.
 
 - **PreLab 진행일정**
   - 분석/설계 : (1일차) 
@@ -33,7 +33,8 @@
   - 분산 메시징 플랫폼 구성 
   - 오토 스케일아웃 (Auto Scale-out) 
   - 무정지 배포 (Zero downtime Deploy) 
-  - Service Mesh (Istio) 환경 구축
+  - Service Mesh 인프라 구축
+  - Service Mesh 기반 마이크로서비스 Resilience 적용
   - 마이크로서비스 통합 모니터링
   - 마이크로서비스 통합 로깅
   - 분산 메시징 플랫폼 모니터링
@@ -44,7 +45,19 @@
   - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/order
   - Microservice Code 리파지토리 [Delivery] : https://github.com/acmexii/delivery
   - Microservice Code 리파지토리 [Product] : https://github.com/acmexii/product
-  
+  - 예제 실행을 위한 마이크로서비스 Client Commands (Local)
+    - 상품등록 : http POST http://localhost:8083/inventories productId=1001 productName=TV stock=100 
+    - 주문생성 : http POST http://localhost:8081/orders productId=1001 productName=TV qty=5 customerId=100
+    - 주문취소 : http DELETE http://localhost:8081/orders/1
+    - Kafka 모니터링 : /usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mall --from-beginning
+
+  - 예제 실행을 위한 마이크로서비스 Client Commands (Cloud)
+    - 상품등록 : http POST http://gateway:8080/inventories productId=1001 productName=TV stock=100 
+    - 주문생성 : http POST http://gateway:8080/orders productId=1001 productName=TV qty=5 customerId=100
+    - 주문취소 : http DELETE http://gateway:8080/orders/1
+    - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
+
+    
 ## Table of contents
 
 - [예제 - 음식배달](#---)
