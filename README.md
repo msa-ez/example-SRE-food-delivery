@@ -30,7 +30,7 @@
   - 통합 메시징 플랫폼 구성/모니터링
 
 - **PreLab 참고자료**
-  - Shop mall 이벤트스토밍 모델: https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
+  - Shop mall 이벤트스토밍 모델 : https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
   - Developing Cloud Native Application : https://labs.msaez.io/#/courses/cna-full/cna-full-aws
   - Pipeline & Service Mesh : https://labs.msaez.io/#/courses/AWS-CICD-Pipeline/a9df3aa0-cf38-11ec-a224-3fc5bb087654
   - Container Orchestration : https://labs.msaez.io/#/courses/Container-Orchestration/container-orchestration-aws
