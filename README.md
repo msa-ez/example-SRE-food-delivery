@@ -40,7 +40,8 @@
   - 분산 메시징 플랫폼 모니터링
 
 - **PreLab 참고자료**
-  - <a href="https://drive.google.com/drive/folders/1atL7qAz4zPLcMiQvW-3PvrU1qmggdziD" target="_blank">[핵심요소 기술 교재]</a>
+  - [건망증이 심한 엔지니어](https://techstock.biz){:target="_blank"}
+  - [핵심요소 기술 교재](https://drive.google.com/drive/folders/1atL7qAz4zPLcMiQvW-3PvrU1qmggdziD){:target="_blank"}
   - Mini Shopping mall 이벤트스토밍 모델 Url :
   - https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
   - Microservice Code 리파지토리
