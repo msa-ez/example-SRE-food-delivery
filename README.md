@@ -40,7 +40,7 @@
   - 분산 메시징 플랫폼 모니터링
 
 - **PreLab 참고자료**
-  - Mini Shopping mall 이벤트스토밍 모델 Url : 
+  - Mini Shopping mall 이벤트스토밍 모델 Url :
   - https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
   - Microservice Code 리파지토리 [Gateway] : https://github.com/acmexii/gateway
   - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/order
