@@ -175,6 +175,7 @@
     - 상점주인이 확인하여 요리해서 배달 출발한다 (ok)
 
 ![image](https://user-images.githubusercontent.com/487999/79684170-47256a00-826a-11ea-9777-e16fafff519a.png)
+
     - 고객이 주문을 취소할 수 있다 (ok)
     - 주문이 취소되면 배달이 취소된다 (ok)
     - 고객이 주문상태를 중간중간 조회한다 (View-green sticker 의 추가로 ok) 
@@ -185,7 +186,7 @@
 
 ![image](https://user-images.githubusercontent.com/487999/79684176-4e4c7800-826a-11ea-8deb-b7b053e5d7c6.png)
     
-    - 수정된 모델은 모든 요구사항을 커버함.
+    - 수정된 모델은 모든 요구사항을 커버함
 
 #### 비기능 요구사항에 대한 검증
 
