@@ -8,32 +8,42 @@
   - 본 예제를 참조하거나 비숫한 수준의 도메인 모델을 정의하고 마이크로서비스 모델링, 클라우드 네이티브 애플리케이션 개발 및 배포, 배포된 마이크로서비스를 운영하는데 필요한 클라우드 플랫폼 기반 모니터링 요소를 중점적으로 구현해야 합니다.
 
 - **PreLab 진행일정**
-  - 분석/설계 : (1일차) 주제 도메인에 대한 분석설계 및 구현단계를 수행하고 관련 산출물 제출
-    - 산출물 목록 : 요구사항(시나리오) 정의서, 이벤트스토밍 모델, 헥사고날 아키텍처 정의서, Mircoservice Source Code 
-  - 배포 및 운영 : (2,3,4일차) 마이크로서비스별 파이프라인을 구축하고, 배포된 마이크로서비스의 운영 및 모니터링을 구현하고 관련 산출물 제출 
-    - 산출물 목록 : 아키텍처 구성도, 파이프라인 이미지, 수행 증적(Microservice 오케스트레이션, 서비스 메시, 모니터링/로깅 이미지)  
-  - 산출물 포멧
+  - 분석/설계 : (1일차) 
+    - 주제 도메인에 대한 분석/설계
+    - 분석/설계 모델에 대한 마이크로서비스 구현
+    - MSA 아키텍처 구성 및 Cloud Platform 프로비저닝
+    - 산출물 : 요구사항 정의서, 이벤트스토밍 모델, 헥사고날 아키텍처 정의서, MSA 구성도 
+  - 배포 및 운영 : (2,3,4일차) 
+    - DevOps Toolchain 구축
+    - 마이크로서비스 오케스트레이션 (오토 스케일아웃, 무정지 배포, EFS 스토리지 구성)
+    - 서비스 메쉬 구성 및 마이크로서비스에 SideCar Injection
+    - 통합 모니터링, 로깅, 메시징 플랫폼 모니터링 적용
+    - 산출물 : 파이프라인 구성도, 수행 증적(Microservice 오케스트레이션, 서비스 메시, 모니터링/로깅 이미지)  
+  - 산출물 format
     - 단계별 산출물은 해당 README.md 화일을 복사해 사용하거나 프리 포멧으로 제출
     - 제출 시, 반드시 소속과 이름을 기재
  
 - **체크포인트** 
-  - Domain 주제영역 및 시나리오
-  - 이벤트스토밍 모델
-  - 폴리글랏 프로그래밍 코드(동기호출, 비동기 호출)
-  - 배포 파이프라인
-  - MSA 아키텍처 (Gateway 포함) 
+  - Domain 주제영역 및 시나리오 이해
+  - 이벤트스토밍 모델 이해
+  - 폴리글랏 프로그래밍 코드(동기호출, 비동기 호출) 이해 
+  - MSA 아키텍처 구성
+  - Cloud Platform 프로비저닝 
+  - DevOps Toolchain 구축 
+  - 분산 메시징 플랫폼 구성 
   - 오토 스케일아웃 (Auto Scale-out) 
   - 무정지 배포 (Zero downtime Deploy) 
-  - Service Mesh (Istio) 
+  - Service Mesh (Istio) 환경 구축
   - 마이크로서비스 통합 모니터링
   - 마이크로서비스 통합 로깅
-  - 통합 메시징 플랫폼 구성/모니터링
+  - 분산 메시징 플랫폼 모니터링
 
 - **PreLab 참고자료**
   - Shop mall 이벤트스토밍 모델 : https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
-  - Developing Cloud Native Application : https://labs.msaez.io/#/courses/cna-full/cna-full-aws
-  - Pipeline & Service Mesh : https://labs.msaez.io/#/courses/AWS-CICD-Pipeline/a9df3aa0-cf38-11ec-a224-3fc5bb087654
-  - Container Orchestration : https://labs.msaez.io/#/courses/Container-Orchestration/container-orchestration-aws
+  - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/gateway
+  - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/order
+  - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/delivery
+  - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/product
   
 ## Table of contents
 
