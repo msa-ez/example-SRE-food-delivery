@@ -42,20 +42,21 @@
 - **PreLab 참고자료**
   - Mini Shopping mall 이벤트스토밍 모델 Url :
   - https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3
-  - Microservice Code 리파지토리 [Gateway] : https://github.com/acmexii/gateway
-  - Microservice Code 리파지토리 [Order] : https://github.com/acmexii/order
-  - Microservice Code 리파지토리 [Delivery] : https://github.com/acmexii/delivery
-  - Microservice Code 리파지토리 [Product] : https://github.com/acmexii/product
+  - Microservice Code 리파지토리
+    - [Gateway] : https://github.com/acmexii/gateway
+    - [Order] : https://github.com/acmexii/order
+    - [Delivery] : https://github.com/acmexii/delivery
+    - [Product] : https://github.com/acmexii/product
   - 예제 실행을 위한 마이크로서비스 Client Commands (Local)
     - 상품등록 : http POST http://localhost:8083/inventories productId=1001 productName=TV stock=100 
     - 주문생성 : http POST http://localhost:8081/orders productId=1001 productName=TV qty=5 customerId=100
     - 주문취소 : http DELETE http://localhost:8081/orders/1
     - Kafka 모니터링 : /usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mall --from-beginning
   - 예제 실행을 위한 마이크로서비스 Client Commands (Cloud)
-  - 상품등록 : http POST http://gateway:8080/inventories productId=1001 productName=TV stock=100 
-  - 주문생성 : http POST http://gateway:8080/orders productId=1001 productName=TV qty=5 customerId=100
-  - 주문취소 : http DELETE http://gateway:8080/orders/1
-  - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
+    - 상품등록 : http POST http://gateway:8080/inventories productId=1001 productName=TV stock=100 
+    - 주문생성 : http POST http://gateway:8080/orders productId=1001 productName=TV qty=5 customerId=100
+    - 주문취소 : http DELETE http://gateway:8080/orders/1
+    - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
 
     
 # Table of contents
