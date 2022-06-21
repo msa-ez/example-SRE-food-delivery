@@ -49,12 +49,12 @@
     - [Order] : https://github.com/acmexii/order
     - [Delivery] : https://github.com/acmexii/delivery
     - [Product] : https://github.com/acmexii/product
-  - 예제 실행을 위한 마이크로서비스 Client Commands (Local)
+  - 마이크로서비스 Test Commands (Local)
     - 상품등록 : http POST http://localhost:8083/inventories productId=1001 productName=TV stock=100 
     - 주문생성 : http POST http://localhost:8081/orders productId=1001 productName=TV qty=5 customerId=100
     - 주문취소 : http DELETE http://localhost:8081/orders/1
     - Kafka 모니터링 : /usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mall --from-beginning
-  - 예제 실행을 위한 마이크로서비스 Client Commands (Cloud)
+  - 마이크로서비스 Test Commands (Cloud)
     - 상품등록 : http POST http://gateway:8080/inventories productId=1001 productName=TV stock=100 
     - 주문생성 : http POST http://gateway:8080/orders productId=1001 productName=TV qty=5 customerId=100
     - 주문취소 : http DELETE http://gateway:8080/orders/1
