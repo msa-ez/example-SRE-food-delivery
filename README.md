@@ -797,40 +797,73 @@ Shortest transaction:	        0.00
 - Availability 가 높아진 것을 확인 (siege)
 
 #### 오토스케일 아웃
-앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
+- 클러스터에 Metric Server가 설치되어 있어야 한다.
+- 또한, Auto Scaling 되기 위해서는 주문서비스의 배포스펙(Buildspec.yml)에 Resource Spec.이 추가되어야 한다.
+- 주문 서비스 Code 저장소에서 buildspec.yml 배포스펙에 resources (맨아래에서 5줄)을 추가한다.
+```
+  readinessProbe:
+    httpGet:
+      path: /actuator/health
+      port: 8080
+    initialDelaySeconds: 10
+    timeoutSeconds: 2
+    periodSeconds: 5
+    failureThreshold: 10
+  livenessProbe:
+    httpGet:
+      path: /actuator/health
+      port: 8080
+    initialDelaySeconds: 120
+    timeoutSeconds: 2
+    periodSeconds: 5
+    failureThreshold: 5
+  resources:
+    limits:
+      cpu: 500m
+    requests:
+      cpu: 200m
+```
 
+- 아래 스크립트를 terminal 에 복사하여 siege 라는 Load Generator를 생성한다.
+```
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: siege
+spec:
+  containers:
+  - name: siege
+    image: apexacme/siege-nginx
+EOF
+```
+- 생성된 siege Pod 안쪽에서 Load Generator가 정상작동하는지 확인한다.
+```
+kubectl exec -it siege -- /bin/bash
+siege -c1 -t2S -v http://order:8080/orders
+exit
+```
 
-- 결제서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
+- 주문서비스에 대한 replica를 동적으로 늘려주도록 HPA를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
 ```
-kubectl autoscale deploy pay --min=1 --max=10 --cpu-percent=15
+kubectl autoscale deploy user##-order --min=1 --max=10 --cpu-percent=15
 ```
-- CB 에서 했던 방식대로 워크로드를 2분 동안 걸어준다.
+
+- 생성된 siege Pod 안쪽에서 주문서비스에 대해 워크로드를 30초 동안 걸어준다.
 ```
-siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081/orders POST {"item": "chicken"}'
+kubectl exec -it siege -- /bin/bash
+siege -c30 -t30S -r10 --content-type "application/json" 'http://order:8080/orders POST {"productId": "1001", "productName": "TV", "qty": "5", "customerId": "100"}'
 ```
-- 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
-```
-kubectl get deploy pay -w
-```
+
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
 ```
 NAME    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-pay     1         1         1            1           17s
-pay     1         2         1            1           45s
-pay     1         4         1            1           1m
+order     1         1         1            1           17s
+order     1         2         1            1           45s
+order     1         4         1            1           1m
 :
 ```
-- siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
-```
-Transactions:		        5078 hits
-Availability:		       92.45 %
-Elapsed time:		       120 secs
-Data transferred:	        0.34 MB
-Response time:		        5.60 secs
-Transaction rate:	       17.15 trans/sec
-Throughput:		        0.01 MB/sec
-Concurrency:		       96.02
-```
+
 
 
 ### 무정지 재배포
