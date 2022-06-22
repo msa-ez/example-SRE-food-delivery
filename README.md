@@ -1,6 +1,3 @@
-![image](https://user-images.githubusercontent.com/35618409/174923395-72cc245a-c596-4129-9a5d-3e0da16e2e7e.png)
-
-
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
 # Site Reliability Engineering(SRE) PreLab 예제 - 음식배달
