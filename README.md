@@ -538,10 +538,37 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 ### Control Tower 환경설정
 - 생성한 MSAEz 환경을 이용하여 컨트롤타워 역할의 클라이언트 환경을 구성한다.
   - 부여받은 AWS 테넌트 계정으로 로컬에 설치된 클라이언트의 Configuration 설정 (관련 Lab 참조)
+```
+aws configure
+AWS Access Key ID [None]:
+AWS Secret Access Key [None]:
+Default region name [None]: 
+Default output format [None]: 
+```
 
 ### 쿠버네티스 클러스터 구성
 - AWS 리전에 쿠버네티스 클러스터를 생성하고, 오케스트레이션에 필요한 서버들을 초기화 한다.  (관련 Lab 참조)
 - AWS 리전에 마이크로서비스별 컨테이너 레지스터리를 생성하고 DevOps Toolchain에서 이를 활용한다.
+```
+eksctl create cluster --name (Cluster-Name) --version 1.21 \
+--nodegroup-name standard-workers --node-type t3.medium \
+--nodes 3 --nodes-min 1 --nodes-max 3
+
+aws eks --region (Region-Code) update-kubeconfig --name (Cluster-Name)
+kubectl get all
+# 클러스터 설정확인
+kubectl config current-context
+
+aws ecr create-repository \
+    --repository-name (Repository-Name) \
+    --image-scanning-configuration scanOnPush=true \
+    --region (Region-Code)
+    
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+# 설치 확인
+kubectl top node
+kubectl top pod    
+```
 
 ### 통합 메시징 인프라 설치
 - 구성된 쿠버네티스 클러스터에 통합 메시징 인프라를 아래 Commands 순서로 실행하여 설치한다.
