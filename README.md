@@ -49,7 +49,7 @@
 - **PreLab 참고자료**
   - [핵심요소 기술 교재](https://drive.google.com/drive/folders/1atL7qAz4zPLcMiQvW-3PvrU1qmggdziD) (Ctrl + 클릭)
   - [Mini Shopping mall 이벤트스토밍 모델](https://labs.msaez.io/#/storming/C7pO0ZuWtXXxIKenocD9EMPYrxw2/98f0cfeee84ff3ded1a1b00f9cd38ac3) (Ctrl + 클릭) 
-  - Microservice Code 리파지토리
+  - Microservice Code 리파지토리 (각 Github에 접속후 'fork'를 눌러 복제)
     - [Gateway] : https://github.com/acmexii/gateway
     - [Order] : https://github.com/acmexii/order
     - [Delivery] : https://github.com/acmexii/delivery
