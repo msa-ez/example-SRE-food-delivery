@@ -568,7 +568,7 @@ helm install my-kafka --namespace kafka incubator/kafka
 ![image](https://user-images.githubusercontent.com/35618409/174682937-ce037bce-1851-451d-add0-00ecb04a64dc.png)
 
 - 이때, Gateway 마이크로서비스는 외부로부터의 단일진입점 역할을 하므로, 클라우드 외부에서도 접근이 가능한 LoadBalancer 타입으로 Buildspec을 수정한다.
-- Service Buildspec 55라인에 type: LoadBalancer를 추가해 준다. 
+- Gateway 파이프라인을 수정하여 55라인 Service Buildspec에 아래처럼 type: LoadBalancer를 추가해 준다. 
 ```
   apiVersion: v1
   kind: Service
