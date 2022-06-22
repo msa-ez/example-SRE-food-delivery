@@ -60,9 +60,9 @@
     - 주문취소 : http DELETE http://localhost:8081/orders/1
     - Kafka 모니터링 : /usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mall --from-beginning
   - 마이크로서비스 Test Commands (Cloud)
-    - 상품등록 : http POST http://gateway:8080/inventories productId=1001 productName=TV stock=100 
-    - 주문생성 : http POST http://gateway:8080/orders productId=1001 productName=TV qty=5 customerId=100
-    - 주문취소 : http DELETE http://gateway:8080/orders/1
+    - 상품등록 : http POST http://GATEWAY-EXTERNAL-IP:8080/inventories productId=1001 productName=TV stock=100 
+    - 주문생성 : http POST http://GATEWAY-EXTERNAL-IP:8080/orders productId=1001 productName=TV qty=5 customerId=100
+    - 주문취소 : http DELETE http://GATEWAY-EXTERNAL-IP:8080/orders/1
     - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
 
     
