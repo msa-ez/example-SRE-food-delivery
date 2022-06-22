@@ -840,19 +840,19 @@ EOF
 - 생성된 siege Pod 안쪽에서 Load Generator가 정상작동하는지 확인한다.
 ```
 kubectl exec -it siege -- /bin/bash
-siege -c1 -t2S -v http://order:8080/orders
+siege -c1 -t2S -v http://ORDER-SERVICE-NAME:8080/orders
 exit
 ```
 
 - 주문서비스에 대한 replica를 동적으로 늘려주도록 HPA를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
 ```
-kubectl autoscale deploy user##-order --min=1 --max=10 --cpu-percent=15
+kubectl autoscale deploy ORDER-DEPLOY-NAME --min=1 --max=10 --cpu-percent=15
 ```
 
 - 생성된 siege Pod 안쪽에서 주문서비스에 대해 워크로드를 30초 동안 걸어준다.
 ```
 kubectl exec -it siege -- /bin/bash
-siege -c30 -t30S -r10 --content-type "application/json" 'http://order:8080/orders POST {"productId": "1001", "productName": "TV", "qty": "5", "customerId": "100"}'
+siege -c30 -t30S -r10 --content-type "application/json" 'http://ORDER-SERVICE-NAME:8080/orders POST {"productId": "1001", "productName": "TV", "qty": "5", "customerId": "100"}'
 ```
 
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
