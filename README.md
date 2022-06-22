@@ -533,7 +533,7 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 
 # Cloud Services Provisioning
 
-### 적용 아키텍처 : AWS, EKS(Elastic Kubernetes Service v1.21), ECR(Elastic Container Registry)
+### 적용 아키텍처 : AWS, EKS(Elastic Kubernetes Service), ECR(Elastic Container Registry), Kafka
 
 ### Control Tower 환경설정
 - 생성한 MSAEz 환경을 이용하여 컨트롤타워 역할의 클라이언트 환경을 구성한다.
