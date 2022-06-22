@@ -550,9 +550,7 @@ Default output format [None]:
 - AWS 리전에 쿠버네티스 클러스터를 생성하고, 오케스트레이션에 필요한 서버들을 초기화 한다.  (관련 Lab 참조)
 - AWS 리전에 마이크로서비스별 컨테이너 레지스터리를 생성하고 DevOps Toolchain에서 이를 활용한다.
 ```
-eksctl create cluster --name (Cluster-Name) --version 1.21 \
---nodegroup-name standard-workers --node-type t3.medium \
---nodes 3 --nodes-min 1 --nodes-max 3
+eksctl create cluster --name (Cluster-Name) --version 1.21 --nodegroup-name standard-workers --node-type t3.medium --nodes 3 --nodes-min 1 --nodes-max 3
 
 aws eks --region (Region-Code) update-kubeconfig --name (Cluster-Name)
 kubectl get all
