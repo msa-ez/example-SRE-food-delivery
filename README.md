@@ -24,7 +24,7 @@
  
   - 산출물 리뷰 : (4일차)
     - MSA PaaS Platform 최종 산출물 통합
-    - 오후(13:00)부터 최종 산출물을 통한 1:1 검토회 진행
+    - 오후(13:00)부터 최종 산출물을 통한 개별 검토회 진행
    
   - Phase별 산출물
     - MSA PaaS Platform 산출물은 해당 README.md 화일을 활용하거나 free format으로 제출
@@ -54,17 +54,6 @@
     - [Order] : https://github.com/acmexii/order
     - [Delivery] : https://github.com/acmexii/delivery
     - [Product] : https://github.com/acmexii/product
-  - 마이크로서비스 Test Commands (Local)
-    - 상품등록 : http POST http://localhost:8083/inventories productId=1001 productName=TV stock=100 
-    - 주문생성 : http POST http://localhost:8081/orders productId=1001 productName=TV qty=5 customerId=100
-    - 주문취소 : http DELETE http://localhost:8081/orders/1
-    - Kafka 모니터링 : /usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mall --from-beginning
-  - 마이크로서비스 Test Commands (Cloud)
-    - 상품등록 : http POST http://GATEWAY-EXTERNAL-IP:8080/inventories productId=1001 productName=TV stock=100 
-    - 주문생성 : http POST http://GATEWAY-EXTERNAL-IP:8080/orders productId=1001 productName=TV qty=5 customerId=100
-    - 주문취소 : http DELETE http://GATEWAY-EXTERNAL-IP:8080/orders/1
-    - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
-
     
 # Table of contents
 
@@ -578,7 +567,33 @@ helm install my-kafka --namespace kafka incubator/kafka
 * AWS기 제공하는 캐쉬기능을 활용하여 마이크로서비스 배포에 소요되는 Lead time을 줄인다.
 ![image](https://user-images.githubusercontent.com/35618409/174682937-ce037bce-1851-451d-add0-00ecb04a64dc.png)
 
+- 이때, Gateway 마이크로서비스는 외부로부터의 단일진입점 역할을 하므로, 클라우드 외부에서도 접근이 가능한 LoadBalancer 타입으로 Buildspec을 수정한다.
+- Service Buildspec 55라인에 type: LoadBalancer를 추가해 준다. 
+```
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: $_PROJECT_NAME
+    labels:
+      app: $_PROJECT_NAME
+  spec:
+    ports:
+      - port: 8080
+        targetPort: 8080
+    selector:
+      app: $_PROJECT_NAME
+    type: LoadBalancer  
+```           
 
+### 배포된 마이크로서비스 테스팅
+- 배포된 마이크로서비스를 테스트하기 전, 통합 메시징 인프라(Kafka)가 설치되어 있어야 한다.
+- 마이크로서비스 Test Commands (Cloud)
+  - 상품등록 : http POST http://GATEWAY-EXTERNAL-IP:8080/inventories productId=1001 productName=TV stock=100 
+  - 주문생성 : http POST http://GATEWAY-EXTERNAL-IP:8080/orders productId=1001 productName=TV qty=5 customerId=100
+  - 주문취소 : http DELETE http://GATEWAY-EXTERNAL-IP:8080/orders/1
+  - Kafka 모니터링 : kubectl -n kafka exec -ti my-kafka-0 -- /usr/bin/kafka-console-consumer --bootstrap-server my-kafka:9092 --topic mall --from-beginning
+    
+    
 # 운영
 
 ### 동기식호출 서킷브레이킹 장애격리
