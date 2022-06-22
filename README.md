@@ -68,9 +68,6 @@
     - [동기식 호출과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출과 Eventual Consistency](#비동기식-호출과-Eventual-Consistency)
   - [Cloud Services Provisioning](#Cloud-Services-Provisioning)
-    - Control Tower 환경설정
-    - 쿠버네티스 클러스터 구성
-    - 통합 메시징 인프라 설치 
   - [배포:](#배포)
     - [파이프라인 생성](#파이프라인-생성)  
   - [운영](#운영)
