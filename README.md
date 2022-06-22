@@ -81,6 +81,7 @@
   - [Cloud Services Provisioning](#Cloud-Services-Provisioning)
     - Control Tower 환경설정
     - 쿠버네티스 클러스터 구성
+    - 통합 메시징 인프라 설치 
   - [배포:](#배포)
     - [파이프라인 생성](#파이프라인-생성)  
   - [운영](#운영)
@@ -556,6 +557,14 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 - AWS 리전에 쿠버네티스 클러스터를 생성하고, 오케스트레이션에 필요한 서버들을 초기화 한다.  (관련 Lab 참조)
 - AWS 리전에 마이크로서비스별 컨테이너 레지스터리를 생성하고 DevOps Toolchain에서 이를 활용한다.
 
+### 통합 메시징 인프라 설치
+- 구성된 쿠버네티스 클러스터에 통합 메시징 인프라를 아래 Commands 순서로 실행하여 설치한다.
+```
+helm repo add incubator https://charts.helm.sh/incubator 
+helm repo update 
+kubectl create ns kafka 
+helm install my-kafka --namespace kafka incubator/kafka 
+```
 
 # 배포
 
