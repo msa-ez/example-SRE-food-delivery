@@ -978,7 +978,8 @@ istioctl install --set profile=demo -y
 kubectl label namespace default istio-injection=enabled
 ```
 
-* Istio Sidecar Injection이 설정된 네임스페이스에 음식배달 서비스를 재배포하여 Service Mesh를 적용한다.
+* Istio Sidecar Injection이 설정된 네임스페이스에 마이크로 서비스들을 재배포하여 Service Mesh를 적용한다.
+* 재배포가 완료된 후, 리소스를 확인하여 Envoy Proxy인 사이드카가 적용되었음을 확인한다.
 ```
 kubectl get all
 ```
