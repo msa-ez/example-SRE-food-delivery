@@ -608,6 +608,35 @@ helm install my-kafka --namespace kafka incubator/kafka
 ```           
 
 ### 배포된 마이크로서비스 테스팅
+- 테스트 전, 배포된 Gateway가 라우팅할 마이크로서비스의 Endpoint를 확인합니다.
+```
+kubectl get service
+```
+- 아래 명령으로 조회된 서비스이름이 Gateway Github상에 resouces폴더 하위에 있는 application.yml에 해당되는 서비스별로 수정합니다.
+```
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: order
+          uri: http://user##-order:8080
+          predicates:
+            - Path=/orders/** 
+        - id: delivery
+          uri: http://user##-delivery:8080
+          predicates:
+            - Path=/deliveries/** 
+        - id: product
+          uri: http://user##-product:8080
+          predicates:
+            - Path=/inventories/** 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+```
+- Gateway 마이크로서비스의 배포가 다시 실행되고, 라우팅할 서비스정보가 적용됩니다.
+
 - 배포된 마이크로서비스를 테스트하기 전, 통합 메시징 인프라(Kafka)가 설치되어 있어야 한다.
 - 마이크로서비스 Test Commands (Cloud)
   - 상품등록 : http POST http://GATEWAY-EXTERNAL-IP:8080/inventories productId=1001 productName=TV stock=100 
