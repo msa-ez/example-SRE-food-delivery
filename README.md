@@ -612,7 +612,7 @@ helm install my-kafka --namespace kafka incubator/kafka
 ```
 kubectl get service
 ```
-- 아래 명령으로 조회된 서비스이름이 Gateway Github상에 resouces폴더 하위에 있는 application.yml에 해당되는 서비스별로 수정합니다.
+- 위 명령으로 조회된 서비스이름이 Gateway Github상에 resouces폴더 하위에 있는 application.yml에 해당되는 서비스별로 수정합니다.
 ```
 spring:
   profiles: docker
