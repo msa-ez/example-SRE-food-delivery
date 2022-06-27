@@ -905,7 +905,7 @@ order     1         4         1            1           1m
   - Siege 결과화면에서 Availability가 100% 임을 확인한다. (배포중 오류가 없었음을 증명)
 
 - 테스트 방법
-- 1. 배포된 Siege 컨테이너에 접속한 후, 주문서비스에 3분동안 요청을 보낸다.
+  - 배포된 Siege 컨테이너에 접속한 후, 주문서비스에 3분동안 요청을 보낸다.
 ```
 kubectl exec -it siege -- /bin/bash
 siege -c1 -t180S -v http://ORDER-SERVICE-NAME:8080/orders
@@ -921,11 +921,11 @@ HTTP/1.1 201     0.70 secs:     207 bytes ==> GET http://ORDER-SERVICE-NAME:8080
 :
 
 ```
-- 2. 주문 서비스 파이프라인이 동작하도록 한다. (Git 상에서 리소스 중 일부를 수정하고 Commit 한다.)
+  - 주문 서비스 파이프라인이 동작하도록 한다. (Git 상에서 리소스 중 일부를 수정하고 Commit 한다.)
 
-- 3. 주문 서비스의 파이프라인이 동작 완료되었다. 
+  - 주문 서비스의 파이프라인이 동작 완료되었다. 
 
-- 4. Seige 의 화면으로 넘어가서 Availability 가 100% 으로 떨어졌는지 확인
+  - Seige 의 화면으로 넘어가서 Availability 가 100% 으로 떨어졌는지 확인
 ```
 Transactions:		        3078 hits
 Availability:		       100 %
