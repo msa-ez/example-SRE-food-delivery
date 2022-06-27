@@ -897,51 +897,35 @@ order     1         4         1            1           1m
 
 ### 무정지 재배포
 
-* 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거함
+- 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 설정을 제거함
+- 테스트 개념
+  - 주문 서비스에 부하량이 적고 테스트 시간이 긴 Siege를 걸어둔다.
+  - 주문 서비스의 파이프라인이 동작하도록 한다. (새버전 배포)
+  - 파이프라인 동작이 끝나면 새버전으로 배포가 이루졌음을 의미한다.
+  - Siege 결과화면에서 Availability가 100% 임을 확인한다. (배포중 오류가 없었음을 증명)
 
-- seige 로 배포작업 직전에 워크로드를 모니터링 함.
+- 테스트 방법
+- 1. 배포된 Siege 컨테이너에 접속한 후, 주문서비스에 3분동안 요청을 보낸다.
 ```
-siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081/orders POST {"item": "chicken"}'
+kubectl exec -it siege -- /bin/bash
+siege -c1 -t180S -v http://ORDER-SERVICE-NAME:8080/orders
 
 ** SIEGE 4.0.5
 ** Preparing 100 concurrent users for battle.
 The server is now under siege...
 
-HTTP/1.1 201     0.68 secs:     207 bytes ==> POST http://localhost:8081/orders
-HTTP/1.1 201     0.68 secs:     207 bytes ==> POST http://localhost:8081/orders
-HTTP/1.1 201     0.70 secs:     207 bytes ==> POST http://localhost:8081/orders
-HTTP/1.1 201     0.70 secs:     207 bytes ==> POST http://localhost:8081/orders
+HTTP/1.1 201     0.68 secs:     207 bytes ==> GET http://ORDER-SERVICE-NAME:8080/orders
+HTTP/1.1 201     0.68 secs:     207 bytes ==> GET http://ORDER-SERVICE-NAME:8080/orders
+HTTP/1.1 201     0.70 secs:     207 bytes ==> GET http://ORDER-SERVICE-NAME:8080/orders
+HTTP/1.1 201     0.70 secs:     207 bytes ==> GET http://ORDER-SERVICE-NAME:8080/orders
 :
 
 ```
+- 2. 주문 서비스 파이프라인이 동작하도록 한다. (Git 상에서 리소스 중 일부를 수정하고 Commit 한다.)
 
-- 새버전으로의 배포 시작
-```
-kubectl set image ...
-```
+- 3. 주문 서비스의 파이프라인이 동작 완료되었다. 
 
-- seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
-```
-Transactions:		        3078 hits
-Availability:		       70.45 %
-Elapsed time:		       120 secs
-Data transferred:	        0.34 MB
-Response time:		        5.60 secs
-Transaction rate:	       17.15 trans/sec
-Throughput:		        0.01 MB/sec
-Concurrency:		       96.02
-
-```
-배포기간중 Availability 가 평소 100%에서 70% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함:
-
-```
-# deployment.yaml 의 readiness probe 의 설정:
-
-
-kubectl apply -f kubernetes/deployment.yaml
-```
-
-- 동일한 시나리오로 재배포 한 후 Availability 확인:
+- 4. Seige 의 화면으로 넘어가서 Availability 가 100% 으로 떨어졌는지 확인
 ```
 Transactions:		        3078 hits
 Availability:		       100 %
@@ -954,7 +938,7 @@ Concurrency:		       96.02
 
 ```
 
-배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
+배포기간 동안 클라이언트의 Siege Availability 가 100% 수치는 무정지 재배포가 성공적으로 이루어졌음을 암시한다.
 
 ### Service Mesh 
 
